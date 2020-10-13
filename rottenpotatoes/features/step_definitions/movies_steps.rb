@@ -23,3 +23,9 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+#Then /the director of "Alien" should be "Ridley Scott"/
+
+Then /the director of "([^"]*)" should be "([^"]*)"$/ do |field, value|
+  expect(Movie.find_by_title(field).director).to eq(value)
+end
